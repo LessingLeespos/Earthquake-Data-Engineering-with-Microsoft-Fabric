@@ -17,7 +17,7 @@ Feture a global map view that Displays spatial distribution and location of eart
 
 ## Microsoft Fabric Workspace Architecture
 
-![Visualization](/captures/01Visual_Earthquake.PNG)
+![Visualization](/captures/Workspace_Earthquake.PNG)
 
 **Medallion Data Pipelines:**
 
