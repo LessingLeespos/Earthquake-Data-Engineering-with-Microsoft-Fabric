@@ -1,47 +1,55 @@
-# Earthquake-Data-Engineering-Project-with-Microsoft-Fabric
+# Earthquake-Data-Engineering-with-Microsoft-Fabric
 
 ## Project Overview
-Learn to build an end to end data engineering and analysis pipelineutilising Microsoft Fabric’s Data Factory, Data Engineering, and Power BI experiences. 
+A data engineering and analysis pipeline utilising Microsoft Fabric’s Data Factory, Data Engineering, and Power BI experiences. 
 
 Ingesting Earthquake events data from [usgs](https://earthquake.usgs.gov/). 
 
 Technologies Used: Python, PySpark, Fabric (Data Engineering, Data Factory, Power BI)
 
-## Getting Started
-To get started with this project, downalod the notebooks in the repository and follow the guidance provided in the YouTube tutorial.
+## Worldwide Earthquake Data Visualization
 
-## Repository Contents
-`Worldwide Earthquake Events API - Bronze Layer Processing`: This notebook focuses on ingesting raw earthquake data from the USGS API. It performs minimal processing to store data in its original format, serving as the foundational layer for further refinement.
+![Visualization](/captures/01Visual_Earthquake.PNG)
 
-`Worldwide Earthquake Events API - Silver Layer Processing`: This notebook enhances the data from the Bronze layer by cleaning, transforming, and consolidating the earthquake data. It prepares the data for more analytical processing.
+An interactive Power BI dashboard tracking global earthquake occurrences within a selected date range.
 
-`Worldwide Earthquake Events API - Gold Layer Processing`: In this final processing stage, the notebook refines the data to create business-ready datasets. These are optimized for high-value insights and are tailored for specific analytical purposes, such as reporting and visualization in tools like Power BI.
+Feture a global map view that Displays spatial distribution and location of earthquake events filtered by severity class. A highlight of total recorded events and maximum significance. It allows dynamic filtering by date range and classification levels (Low, Moderate, High).
 
-## Data Attribute Definitions
-`id`: A string identifier for each data record.
+## Microsoft Fabric Workspace Architecture
 
-`latitude`: The latitude of the event, stored as a double.
+![Visualization](/captures/01Visual_Earthquake.PNG)
 
-`longitude`: The longitude of the event, also stored as a double.
+**Medallion Data Pipelines:**
 
-`elevation`: The elevation at which the event occurred, expressed in meters, stored as a double.
+01 Worldwide Earthquake Events API - Bro (Bronze layer: Raw API ingestion)
 
-`title`: A string representing the title or name of the event.
+02 Worldwide Earthquake Events API - Silv (Silver layer: Data cleaning & transformation)
 
-`place_description`: A string describing the location of the event.
+03 Worldwide Earthquake Events API - Gol (Gold layer: Business-ready aggregation)
 
-`sig`: A bigint (large integer) representing the significance score of the event.
+**Orchestration & Storage:**
 
-`mag`: A double indicating the magnitude of the earthquake.
+Earthquake_Pipeline: Automated data pipeline orchestrating execution flow.
 
-`magType`: A string describing the type of magnitude scale used.
+lkh_Earthquake: Central Lakehouse holding Delta tables and its corresponding SQL analytics endpoint.
 
-`time`: A timestamp marking the exact time of the event.
+**Semantic Layer:**
 
-`updated`: A timestamp indicating the last update time for the event data.
+sm_Earthquake: Semantic model delivering structured metrics and data to Power BI reporting.
 
-## Prerequisites
-- Microsoft Fabric Account.
-- Fabric Administrator (or access to individual with Admin account).
-- Familiarity with Python, Spark, and basic data engineering concepts.
-- Basic Power BI skills.
+## Lakehouse Storage & Delta Lake Layer Architecture
+
+## Lakehouse Storage & Aggregation
+
+![Lakehouse Storage](/captures/Lakehouse_Earthquake.PNG)
+
+Overview of the Delta Lake storage structure within `lkh_Earthquake`:
+Gold Layer (`earthquake_events_gold`): High-level curated dataset optimized for Power BI reporting.
+Aggregation & Transformation Details:
+  Spatial Alignment: Standardizes latitude, longitude, and elevation metrics.
+  Severity & Metric Calculation: Normalizes raw magnitude (`mag`) and significance (`sig`) parameters for fast reporting aggregation.
+  Metadata Refinement: Enriches location text (`place_description`) and title formats for clean visual presentation.
+
+## Conclusion
+
+This architecture demonstrates end-to-end data pipeline built on Microsoft Fabric that automates the ingestion, transformation, and analytical serving of global seismic activity data from the USGS API. By structuring the data pipeline through a Medallion architecture, the solution transforms high-frequency, raw unstructured payload JSON into clean, queryable assets.
