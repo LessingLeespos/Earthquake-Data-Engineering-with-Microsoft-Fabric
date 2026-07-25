@@ -37,9 +37,7 @@ lkh_Earthquake: Central Lakehouse holding Delta tables and its corresponding SQL
 
 sm_Earthquake: Semantic model delivering structured metrics and data to Power BI reporting.
 
-## Lakehouse Storage & Delta Lake Layer Architecture
-
-## Lakehouse Storage & Aggregation
+## Lakehouse Storage
 
 ![Lakehouse Storage](/captures/Lakehouse_Earthquake.PNG)
 
