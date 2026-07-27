@@ -49,5 +49,5 @@ Aggregation & Transformation Details:
   Metadata Refinement: Enriches location text (`place_description`) and title formats for clean visual presentation.
 
 ## Conclusion
-
+![Visualization](/captures/02Visual_Earthquake.PNG)
 This architecture demonstrates end-to-end data pipeline built on Microsoft Fabric that automates the ingestion, transformation, and analytical serving of global seismic activity data from the USGS API. By structuring the data pipeline through a Medallion architecture, the solution transforms high-frequency, raw unstructured payload JSON into clean, queryable assets.
