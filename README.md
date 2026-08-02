@@ -20,19 +20,7 @@ Feature a global map view that Displays spatial distribution and location of ear
 
 ![Visualization](/captures/Workspace_Earthquake.PNG)
 
-[ USGS API ] ──► [ Data Factory Pipeline ] ──► [ Lakehouse: Bronze (Raw GeoJSON/JSON) ]
-                                                            │
-                                                     (PySpark / Fabric Notebook)
-                                                            ▼
-                                                [ Lakehouse: Silver (Cleaned Delta) ]
-                                                            │
-                                                     (Spark SQL / Fabric Notebook)
-                                                            ▼
-                                                [ Lakehouse: Gold (Star Schema) ]
-                                                            │
-                                                     (Direct Lake / Power BI)
-                                                            ▼
-                                                [ Power BI Dashboard ]
+[USGS API] → [Data Factory Pipeline] → [Lakehouse: Bronze (Raw GeoJSON/JSON)] → (PySpark / Fabric Notebook) → [Lakehouse: Silver (Cleaned Delta)] → [Lakehouse: Silver (Cleaned Delta)] → [Spark SQL / Fabric Notebook] → [Lakehouse: Gold (Star Schema)] → [ Power BI Dashboard (Direct Lake)]
 
 **Medallion Data Pipelines:**
 
