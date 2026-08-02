@@ -1,6 +1,7 @@
-# Earthquake-Data-Engineering-with-Microsoft-Fabric
+#  Worldwide Earthquake Data Pipeline & Analytics (Microsoft Fabric)
+![Visualization](/captures/01Visual_Earthquake.PNG)
 
-## Project Overview
+## Overview
 A data engineering and analysis pipeline utilising Microsoft Fabric’s Data Factory, Data Engineering, and Power BI experiences. 
 
 Ingesting Earthquake events data from [usgs](https://earthquake.usgs.gov/). 
@@ -9,15 +10,29 @@ Technologies Used: Python, PySpark, Fabric (Data Engineering, Data Factory, Powe
 
 ## Worldwide Earthquake Data Visualization
 
-![Visualization](/captures/01Visual_Earthquake.PNG)
+![Visualization](/captures/02Visual_Earthquake.PNG)
 
 An interactive Power BI dashboard tracking global earthquake occurrences within a selected date range.
 
-Feture a global map view that Displays spatial distribution and location of earthquake events filtered by severity class. A highlight of total recorded events and maximum significance. It allows dynamic filtering by date range and classification levels (Low, Moderate, High).
+Feature a global map view that Displays spatial distribution and location of earthquake events filtered by severity class. A highlight of total recorded events and maximum significance. It allows dynamic filtering by date range and classification levels (Low, Moderate, High).
 
 ## Microsoft Fabric Workspace Architecture
 
 ![Visualization](/captures/Workspace_Earthquake.PNG)
+
+[ USGS API ] ──► [ Data Factory Pipeline ] ──► [ Lakehouse: Bronze (Raw GeoJSON/JSON) ]
+                                                            │
+                                                     (PySpark / Fabric Notebook)
+                                                            ▼
+                                                [ Lakehouse: Silver (Cleaned Delta) ]
+                                                            │
+                                                     (Spark SQL / Fabric Notebook)
+                                                            ▼
+                                                [ Lakehouse: Gold (Star Schema) ]
+                                                            │
+                                                     (Direct Lake / Power BI)
+                                                            ▼
+                                                [ Power BI Dashboard ]
 
 **Medallion Data Pipelines:**
 
@@ -48,6 +63,3 @@ Aggregation & Transformation Details:
   Severity & Metric Calculation: Normalizes raw magnitude (`mag`) and significance (`sig`) parameters for fast reporting aggregation.
   Metadata Refinement: Enriches location text (`place_description`) and title formats for clean visual presentation.
 
-## Conclusion
-![Visualization](/captures/02Visual_Earthquake.PNG)
-This architecture demonstrates end-to-end data pipeline built on Microsoft Fabric that automates the ingestion, transformation, and analytical serving of global seismic activity data from the USGS API. By structuring the data pipeline through a Medallion architecture, the solution transforms high-frequency, raw unstructured payload JSON into clean, queryable assets.
